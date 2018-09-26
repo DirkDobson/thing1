@@ -1,17 +1,19 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Button } from 'semantic-ui-react'
 import axios from 'axios'
 import Tweets from './Tweets'
 
 class App extends React.Component {
   state = { tweets: [] }
 
-  componentDidMount() {
+  getTweets = () => {
     axios.get('api/tweets')
     .then( res => this.setState({tweets: res.data}) )
   }
   render() {
     return(
+      <div>
+        <Button onClick={this.getTweets}>Click Me</Button>
       <Grid>
         <Grid.Row>
           <Grid.Column mobile={16} tablet={16} computer={4}>
@@ -21,6 +23,7 @@ class App extends React.Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      </div>
     )
   }
 }
